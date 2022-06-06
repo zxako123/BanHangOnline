@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451392269700",
+    "project_id": "banhangonline-42793",
+    "storage_bucket": "banhangonline-42793.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451392269700:android:2c1616ee0741580c9101d1",
+        "android_client_info": {
+          "package_name": "com.example.banhangonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451392269700-dfi5n4usgv5oflb3vu693lfluhvfscsm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3uXQTCvh0wgpqexu0xAU810-a0M4fddk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451392269700-dfi5n4usgv5oflb3vu693lfluhvfscsm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
