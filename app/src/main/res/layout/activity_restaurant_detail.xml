@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/mediumSpace"
-                android:text="StoreName"
+                android:text="7-Eleven Nguyen Thi Minh Khai"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/largeFontSize"
                 android:textStyle="bold" />
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/mediumSpace"
                 android:layout_marginRight="@dimen/mediumSpace"
-                android:text="Address"
+                android:text="82 Nguyen Thi Minh Khai"
                 android:textColor="@color/colorLightBlack"
                 android:textSize="@dimen/smallFontSize" />
 
@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/mediumSpace"
-        android:background="@drawable/bg_orange_corner_button"
+        android:background="@drawable/bg_green_corner_button"
         android:layout_gravity="bottom"
         android:padding="@dimen/mediumSpace">
 

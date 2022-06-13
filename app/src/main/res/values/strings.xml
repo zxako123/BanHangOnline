@@ -22,12 +22,12 @@
 
 
     <string name="google_maps_api_key">AIzaSyB3wsvqVExy7iQvWmDoy4llcjqjthLl-Z0</string>
-    <string name="app_description">Everything you need is right here</string>
+    <string name="text_instant_food_delivery">Instant Food Delivery</string>
     <string name="text_email">Email</string>
     <string name="text_password">Password</string>
-    <string name="text_forgot">Forgot your password?</string>
+    <string name="text_forgot">Forgot?</string>
     <string name="text_sign_in">Sign In</string>
-    <string name="text_sign_up">Sign Up now</string>
+    <string name="text_sign_up">Sign Up</string>
     <string name="text_sign_in_facebook">Sign In with Facebook</string>
     <string name="text_sign_in_google">Sign In with Google</string>
     <string name="text_view_basket">View Basket</string>

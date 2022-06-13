@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BanHangOnline">
+        android:theme="@style/Theme.FooodyApp">
         <activity
             android:name="com.example.banhangonline.OrderActivity"
             android:exported="true" />
@@ -41,7 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCznV9SrRheRqUKwMVsy2LMfjZga9_F-c8"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCZQf2dnUzkRaT7MC-49Ah3m3HNVjPCygg"/>
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Item"
+        android:text="Black Coffee"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,10 +24,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="4dp"
-        android:text="0 VND"
-        android:textColor="@color/colorPrimary"
-
+        android:text="49000 VND"
         android:textStyle="bold"
+
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNameBasket" />
@@ -50,9 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:text="0 VND"
-        android:textColor="@color/colorPrimary"
+        android:text="49000.0 VND"
         android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

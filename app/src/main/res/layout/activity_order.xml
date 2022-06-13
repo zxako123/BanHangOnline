@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="0 VND"
+                    android:text="304000 VND"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/largeFontSize"
                     android:textStyle="bold" />
@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/mediumSpace"
-            android:background="@drawable/bg_orange_button"
+            android:background="@drawable/bg_green_button"
             android:text="@string/checkout"
             android:padding="@dimen/mediumSpace"
             android:textAllCaps="false"

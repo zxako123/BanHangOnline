@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="User"
+        android:text="@string/nav_header_title"
         android:id="@+id/tvFullName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -32,5 +32,5 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LMLStore@gmail.com" />
+        android:text="@string/nav_header_subtitle" />
 </LinearLayout>

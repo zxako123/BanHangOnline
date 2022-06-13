@@ -28,8 +28,8 @@
         android:id="@+id/tvTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Total: 304000 VND"
         android:layout_gravity="right"
-        android:text="Total: 0 VND"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/largeFontSize"
         android:textStyle="bold" />
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/mediumSpace"
-        android:background="@drawable/bg_orange_border_button"
+        android:background="@drawable/bg_green_border_button"
         android:text="@string/book"
         android:padding="@dimen/mediumSpace"
         android:textAllCaps="false"

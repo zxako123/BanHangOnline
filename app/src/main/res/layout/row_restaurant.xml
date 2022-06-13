@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/ivImage"
-        android:text="Store"
+        android:text="7 Eleven"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/largeFontSize" />
 
@@ -31,7 +31,7 @@
         android:layout_below="@id/tvName"
         android:layout_marginTop="@dimen/mediumSpace"
         android:layout_toRightOf="@id/ivImage"
-        android:text="Address"
+        android:text="82 Nguyen Thi Minh Khai"
         android:textColor="@color/colorTextHint"
         android:textSize="@dimen/mediumFontSize" />
 
