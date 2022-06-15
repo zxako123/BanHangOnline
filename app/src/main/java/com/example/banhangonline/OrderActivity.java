@@ -14,13 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import java.text.SimpleDateFormat;
 
-import com.example.banhangonline.Adapter.FoodBasketAdapter;
-import com.example.banhangonline.Model.Basket;
-import com.example.banhangonline.Model.Food;
-import com.example.banhangonline.Model.FoodBasket;
+import com.example.banhangonline.Adapter.ProductCartAdapter;
+import com.example.banhangonline.Model.Cart;
+import com.example.banhangonline.Model.Product;
+import com.example.banhangonline.Model.ProductCart;
 import com.example.banhangonline.Model.OrderFinished;
 import com.example.banhangonline.Model.User;
-import com.example.banhangonline.Room.Cart;
 import com.example.banhangonline.Room.CartRepository;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,9 +41,9 @@ import java.util.concurrent.ExecutionException;
 public class OrderActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private TextView tvTotal, tvName, tvAddress, tvMobile;
-    private RecyclerView rvFoods;
-    private Basket basket;
-    private FoodBasketAdapter adapter;
+    private RecyclerView rvProducts;
+    private Cart cart;
+    private ProductCartAdapter adapter;
     private Button btnPlaceOrder;
     GoogleMap map;
     FirebaseAuth fAuth;
@@ -88,25 +87,25 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
 
         Intent intent = getIntent();
         cartRepository = new CartRepository(getApplication());
-        if( intent.getSerializableExtra("basket") != null ){
-            basket = (Basket) intent.getSerializableExtra("basket");
+        if( intent.getSerializableExtra("cart") != null ){
+            cart = (Cart) intent.getSerializableExtra("cart");
         }else {
             try {
 
-                basket = new Basket();
-                List<Cart> carts = cartRepository.getAllCarts();
-                for (Cart cart : carts){
-                    basket.addFood(new FoodBasket(new Food(cart.getFoodName(),
-                            cart.getFoodImage(),
-                            cart.getFoodPrice(),
-                            cart.getFoodRate(),
+                cart = new Cart();
+                List<com.example.banhangonline.Room.Cart> carts = cartRepository.getAllCarts();
+                for (com.example.banhangonline.Room.Cart cart : carts){
+                    this.cart.addProduct(new ProductCart(new Product(cart.getProductName(),
+                            cart.getProductImage(),
+                            cart.getProductPrice(),
+                            cart.getProductRate(),
                             cart.getResKey(),
-                            cart.getFoodKey()),
+                            cart.getProductKey()),
                             cart.getQuantity(),
                             cart.getSum()));
                             }
-                basket.calculateBasket();
-                Log.d("ABC", basket.toString());
+                cart.calculateCart();
+                Log.d("ABC", cart.toString());
 
                 }catch (ExecutionException e) {
                 e.printStackTrace();
@@ -115,11 +114,11 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         }
         tvTotal = findViewById(R.id.tvTotal);
-        tvTotal.setText(basket.getTotalPrice()+"");
-        rvFoods = findViewById(R.id.rvFoods);
-        adapter = new FoodBasketAdapter(new ArrayList<>(basket.foods.values()));
-        rvFoods.setAdapter(adapter);
-        rvFoods.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        tvTotal.setText(cart.getTotalPrice()+"");
+        rvProducts = findViewById(R.id.rvProduct);
+        adapter = new ProductCartAdapter(new ArrayList<>(cart.products.values()));
+        rvProducts.setAdapter(adapter);
+        rvProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,18 +127,18 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
                 String orderKey = fDatabase.getReference().child("orders").push().getKey();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String orderDate = sdf.format(System.currentTimeMillis());
-                ArrayList<FoodBasket> foodBaskets = new ArrayList<>();
-//                for (int i = 0; i< basket.foods.size();i++){
-//                    foodBaskets.add(basket.getFood(i+""));
+                ArrayList<ProductCart> foodBaskets = new ArrayList<>();
+//                for (int i = 0; i< cart.products.size();i++){
+//                    foodBaskets.add(cart.getProduct(i+""));
 //                }
-                foodBaskets.addAll(basket.foods.values());
+                foodBaskets.addAll(cart.products.values());
                 Log.d("DEF", foodBaskets.size()+"");
-                OrderFinished orderFinished = new OrderFinished(orderKey, orderDate, basket.getTotalPrice(), 1, userID, foodBaskets);
+                OrderFinished orderFinished = new OrderFinished(orderKey, orderDate, cart.getTotalPrice(), 1, userID, foodBaskets);
                 fDatabase.getReference().child("orders").child(userID).child(orderKey).setValue(orderFinished)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                               // RestaurantDetailActivity.map.clear();
+                               // StoreDetailActivity.map.clear();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -148,8 +147,8 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
                     }
                 });
                App app = (App) getApplication();
-               app.basket.foods.clear();
-               app.basket.calculateBasket();
+               app.cart.products.clear();
+               app.cart.calculateCart();
                Intent intent1 = new Intent(OrderActivity.this, MainActivity.class);
                startActivity(intent1);
                finish();

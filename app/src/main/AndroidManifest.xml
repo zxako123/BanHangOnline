@@ -13,12 +13,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FooodyApp">
+        android:theme="@style/Theme.LMLStore">
         <activity
             android:name="com.example.banhangonline.OrderActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.banhangonline.RestaurantDetailActivity"
+            android:name="com.example.banhangonline.StoreDetailActivity"
             android:exported="true" />
         <activity
             android:name="com.example.banhangonline.ChangePasswordActivity"

@@ -3,19 +3,19 @@ package com.example.banhangonline.Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Restaurant implements Serializable {
+public class Store implements Serializable {
     public String name;
     public String logo;
     public String cover;
     public String address;
     public String openHours;
-    public ArrayList<Food> menu;
+    public ArrayList<Product> menu;
     public int rate;
     public String resKey;
 
-    public Restaurant(){
+    public Store(){
     }
-    public Restaurant(String name, String logo, String cover, String address, String openHours, ArrayList<Food> menu, int rate, String resKey) {
+    public Store(String name, String logo, String cover, String address, String openHours, ArrayList<Product> menu, int rate, String resKey) {
         this.name = name;
         this.logo = logo;
         this.cover = cover;
@@ -65,11 +65,11 @@ public class Restaurant implements Serializable {
         this.openHours = openHours;
     }
 
-    public ArrayList<Food> getMenu() {
+    public ArrayList<Product> getMenu() {
         return menu;
     }
 
-    public void setMenu(ArrayList<Food> menu) {
+    public void setMenu(ArrayList<Product> menu) {
         this.menu = menu;
     }
 
@@ -87,7 +87,7 @@ public class Restaurant implements Serializable {
 
     @Override
     public String toString() {
-        return "Restaurant{" +
+        return "Store{" +
                 "name='" + name + '\'' +
                 ", logo='" + logo + '\'' +
                 ", cover='" + cover + '\'' +

@@ -3,35 +3,35 @@ package com.example.banhangonline.Model;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Basket implements Serializable {
-    public HashMap<String, FoodBasket> foods;
+public class Cart implements Serializable {
+    public HashMap<String, ProductCart> products;
     public double totalPrice;
     public int totalItem;
 
-    public Basket(HashMap<String, FoodBasket> foodBasket, double price, int quantity) {
-        foods = foodBasket;
+    public Cart(HashMap<String, ProductCart> foodBasket, double price, int quantity) {
+        products = foodBasket;
         totalPrice = price;
         totalItem = quantity;
     }
-    public Basket() {
-        foods = new HashMap<>();
+    public Cart() {
+        products = new HashMap<>();
         totalItem = 0;
         totalPrice = 0;
     }
 
 
-    public void addFood(FoodBasket food) {
-        foods.put(food.getFoodKey(), food);
+    public void addProduct(ProductCart product) {
+        products.put(product.getProductKey(), product);
     }
 
-    public FoodBasket getFood(String key) {
-        return foods.get(key);
+    public ProductCart getProduct(String key) {
+        return products.get(key);
     }
 
-    public void calculateBasket() {
+    public void calculateCart() {
         totalPrice = 0;
         totalItem = 0;
-        for (FoodBasket foodBasket : foods.values()) {
+        for (ProductCart foodBasket : products.values()) {
             totalPrice += (foodBasket.price * foodBasket.quantity);
             totalItem += 1;
         }
@@ -46,8 +46,8 @@ public class Basket implements Serializable {
 
     @Override
     public String toString() {
-        return "Basket{" +
-                "foods=" + foods +
+        return "Cart{" +
+                "foods=" + products +
                 ", totalPrice=" + totalPrice +
                 ", totalItem=" + totalItem +
                 '}';

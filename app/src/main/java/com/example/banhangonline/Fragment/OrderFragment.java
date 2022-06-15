@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.banhangonline.Adapter.OrderAdapter;
 import com.example.banhangonline.Model.OrderFinished;
-import com.example.banhangonline.Model.Restaurant;
+import com.example.banhangonline.Model.Store;
 import com.example.banhangonline.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +33,7 @@ import java.util.ArrayList;
  */
 public class OrderFragment extends Fragment implements OrderAdapter.OnOrderItemListener {
 
-    ArrayList<Restaurant> restaurants;
+    ArrayList<Store> stores;
     FirebaseDatabase firebaseDatabase;
     OrderAdapter orderAdapter;
     ArrayList<OrderFinished> orderFinisheds;
@@ -77,7 +77,7 @@ public class OrderFragment extends Fragment implements OrderAdapter.OnOrderItemL
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        restaurants = new ArrayList<>();
+        stores = new ArrayList<>();
         orderFinisheds = new ArrayList<>();
         setHasOptionsMenu(true);
     }
@@ -94,7 +94,7 @@ public class OrderFragment extends Fragment implements OrderAdapter.OnOrderItemL
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvOrderFinished = view.findViewById(R.id.rvOrderFinish);
-        orderAdapter = new OrderAdapter(orderFinisheds,restaurants, this);
+        orderAdapter = new OrderAdapter(orderFinisheds, stores, this);
         rvOrderFinished.setAdapter(orderAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvOrderFinished.setLayoutManager(layoutManager);
@@ -118,13 +118,13 @@ public class OrderFragment extends Fragment implements OrderAdapter.OnOrderItemL
 
             }
         });
-        reference.child("restaurants").addValueEventListener(new ValueEventListener() {
+        reference.child("stores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                restaurants.clear();
+                stores.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Restaurant restaurant = dataSnapshot.getValue(Restaurant.class);
-                    restaurants.add(restaurant);
+                    Store store = dataSnapshot.getValue(Store.class);
+                    stores.add(store);
                 }
                 orderAdapter.notifyDataSetChanged();
             }

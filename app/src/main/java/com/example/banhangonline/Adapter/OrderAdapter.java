@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.banhangonline.Model.OrderFinished;
-import com.example.banhangonline.Model.Restaurant;
+import com.example.banhangonline.Model.Store;
 import com.example.banhangonline.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -41,13 +41,13 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    private List<Restaurant> restaurants;
+    private List<Store> stores;
     private List<OrderFinished> orderFinisheds;
     private OnOrderItemListener onOrderItemListener;
 
-    public OrderAdapter(List<OrderFinished> orderFinisheds, List<Restaurant> restaurants, OnOrderItemListener onOrderItemListener){
+    public OrderAdapter(List<OrderFinished> orderFinisheds, List<Store> stores, OnOrderItemListener onOrderItemListener){
         this.orderFinisheds = orderFinisheds;
-        this.restaurants = restaurants;
+        this.stores = stores;
         this.onOrderItemListener = onOrderItemListener;
     }
     @NonNull
@@ -62,24 +62,24 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         OrderFinished orderFinished = orderFinisheds.get(position);
-        Restaurant restaurant = new Restaurant();
-        for(Restaurant res: restaurants){
-            if(orderFinished.getFoodBaskets().get(0).getResKey().equals((res.getResKey()))){
-                restaurant = res;
+        Store store = new Store();
+        for(Store res: stores){
+            if(orderFinished.getProductCarts().get(0).getResKey().equals((res.getResKey()))){
+                store = res;
                 break;
             }
         }
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();;
         ViewHolderOrder viewHolderOrder = (ViewHolderOrder) holder;
-        StorageReference profileRef = storageReference.child("restaurants/" + restaurant.getLogo());
+        StorageReference profileRef = storageReference.child("stores/" + store.getLogo());
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).into(viewHolderOrder.imageView);
             }
         });
-        viewHolderOrder.tvName.setText(restaurant.getName());
-        viewHolderOrder.tvAddress.setText(restaurant.getAddress());
+        viewHolderOrder.tvName.setText(store.getName());
+        viewHolderOrder.tvAddress.setText(store.getAddress());
         viewHolderOrder.tvID.setText(orderFinished.getOrderID());
         viewHolderOrder.tvDate.setText(orderFinished.getOrderDate());
         viewHolderOrder.tvSum.setText(orderFinished.getOrderSum());

@@ -14,14 +14,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.banhangonline.Adapter.FoodAdapter;
-import com.example.banhangonline.Fragment.AddToBasketFragment;
-import com.example.banhangonline.Fragment.BasketDialogFragment;
-import com.example.banhangonline.Model.Basket;
-import com.example.banhangonline.Room.Cart;
-import com.example.banhangonline.Model.Food;
-import com.example.banhangonline.Model.FoodBasket;
-import com.example.banhangonline.Model.Restaurant;
+import com.example.banhangonline.Adapter.ProductAdapter;
+import com.example.banhangonline.Fragment.AddToCartFragment;
+import com.example.banhangonline.Fragment.CartDialogFragment;
+import com.example.banhangonline.Model.Cart;
+import com.example.banhangonline.Model.Product;
+import com.example.banhangonline.Model.ProductCart;
+import com.example.banhangonline.Model.Store;
 import com.example.banhangonline.Room.CartRepository;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -38,63 +37,63 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
-public class RestaurantDetailActivity extends AppCompatActivity implements FoodAdapter.OnFoodItemClickListener, View.OnClickListener{
+public class StoreDetailActivity extends AppCompatActivity implements ProductAdapter.OnProductItemClickListener, View.OnClickListener{
 
     TextView tvName, tvAddress, tvOpenHours,tvTotalPrices, tvTotalItems;
     ImageView ivCover;
-    View layoutViewBasket;
-    RecyclerView rvFoods;
-    FoodAdapter foodAdapter;
-    Restaurant restaurant;
-    Food food;
-    ArrayList<Food> foods;
+    View layoutViewCart;
+    RecyclerView rvProducts;
+    ProductAdapter productAdapter;
+    Store store;
+    Product product;
+    ArrayList<Product> products;
     CartRepository cartRepository;
     App app;
     FirebaseDatabase fDatabase;
-    DatabaseReference dRestaurant;
+    DatabaseReference dStore;
     FirebaseStorage fStorage;
-    public final static HashMap<String, FoodBasket> map = new HashMap<>();
+    public final static HashMap<String, ProductCart> map = new HashMap<>();
     public static int order = 0;
     public static double price = 0;
     public static int quantity = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_detail);
-        foods = new ArrayList<>();
+        setContentView(R.layout.activity_store_detail);
+        products = new ArrayList<>();
         tvName = findViewById(R.id.tvName);
         tvAddress = findViewById(R.id.tvAddress);
         tvOpenHours = findViewById(R.id.tvOpenHours);
         ivCover = findViewById(R.id.ivCover);
 
-        rvFoods = findViewById(R.id.rvFoods);
+        rvProducts = findViewById(R.id.rvProduct);
 
-        foodAdapter = new FoodAdapter(foods, this);
-        rvFoods.setAdapter(foodAdapter);
+        productAdapter = new ProductAdapter(products, this);
+        rvProducts.setAdapter(productAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        rvFoods.setLayoutManager(layoutManager);
-        rvFoods.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        rvProducts.setLayoutManager(layoutManager);
+        rvProducts.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         cartRepository = new CartRepository(getApplication());
         fDatabase = FirebaseDatabase.getInstance();
         fStorage = FirebaseStorage.getInstance();
 
 
         Intent intent = getIntent();
-        food = (Food) intent.getSerializableExtra("food");
-        if(food != null) {
-            onFoodItemClick(food);
-            dRestaurant = fDatabase.getReference();
-            Query query = dRestaurant.child("restaurants").child(food.getResKey());
+        product = (Product) intent.getSerializableExtra("product");
+        if(product != null) {
+            onProductItemClick(product);
+            dStore = fDatabase.getReference();
+            Query query = dStore.child("restaurants").child(product.getResKey());
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    restaurant = snapshot.getValue(Restaurant.class);
-                    foods.addAll(restaurant.getMenu());
-                    foodAdapter.notifyDataSetChanged();
-                    tvName.setText(restaurant.name);
-                    tvAddress.setText(restaurant.address);
-                    tvOpenHours.setText(restaurant.getOpenHours());
-                    StorageReference profileRef = fStorage.getReference().child("restaurants/covers/"+ restaurant.getCover());
+                    store = snapshot.getValue(Store.class);
+                    products.addAll(store.getMenu());
+                    productAdapter.notifyDataSetChanged();
+                    tvName.setText(store.name);
+                    tvAddress.setText(store.address);
+                    tvOpenHours.setText(store.getOpenHours());
+                    StorageReference profileRef = fStorage.getReference().child("restaurants/covers/"+ store.getCover());
                     profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
@@ -108,14 +107,14 @@ public class RestaurantDetailActivity extends AppCompatActivity implements FoodA
                 }
             });
         }else{
-            restaurant = (Restaurant) intent.getSerializableExtra("restaurant");
-            foods.addAll(restaurant.getMenu());
-            foodAdapter.notifyDataSetChanged();
-            tvName.setText(restaurant.getName());
-            tvAddress.setText(restaurant.getAddress());
-            tvOpenHours.setText(restaurant.getOpenHours());
-            Log.d("IJK", restaurant.getCover());
-            StorageReference profileRef = fStorage.getReference().child("restaurants/covers/"+ restaurant.getCover());
+            store = (Store) intent.getSerializableExtra("store");
+            products.addAll(store.getMenu());
+            productAdapter.notifyDataSetChanged();
+            tvName.setText(store.getName());
+            tvAddress.setText(store.getAddress());
+            tvOpenHours.setText(store.getOpenHours());
+            Log.d("IJK", store.getCover());
+            StorageReference profileRef = fStorage.getReference().child("restaurants/covers/"+ store.getCover());
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
@@ -123,20 +122,20 @@ public class RestaurantDetailActivity extends AppCompatActivity implements FoodA
                 }
             });
         }
-        layoutViewBasket = findViewById(R.id.layoutViewBasket);
-        layoutViewBasket.setOnClickListener(this);
+        layoutViewCart = findViewById(R.id.layoutViewCart);
+        layoutViewCart.setOnClickListener(this);
         tvTotalPrices = findViewById(R.id.tvTotalPrices);
         tvTotalItems = findViewById(R.id.tvTotalItems);
         app = (App) getApplication();
-        app.basket = new Basket();
-        updateBasket();
+        app.cart = new Cart();
+        updateCart();
     }
     @Override
     public void onResume() {
         super.onResume();
-        app.basket.foods.clear();
-        app.basket.calculateBasket();
-        ArrayList<Cart> carts = new ArrayList<>();
+        app.cart.products.clear();
+        app.cart.calculateCart();
+        ArrayList<com.example.banhangonline.Room.Cart> carts = new ArrayList<>();
         try {
             carts.addAll(cartRepository.getAllCarts());
         } catch (ExecutionException e) {
@@ -145,40 +144,40 @@ public class RestaurantDetailActivity extends AppCompatActivity implements FoodA
             e.printStackTrace();
         }
             for(int i=0;i<carts.size();i++){
-                Cart cart = carts.get(i);
-                FoodBasket foodBasket = new FoodBasket(cart.getFoodName(), cart.getFoodImage(), cart.getFoodPrice(), cart.getFoodRate(), cart.getResKey(), cart.getFoodKey(), cart.getQuantity(), (int) cart.getSum());
-                app.basket.addFood(foodBasket);
+                com.example.banhangonline.Room.Cart cart = carts.get(i);
+                ProductCart foodBasket = new ProductCart(cart.getProductName(), cart.getProductImage(), cart.getProductPrice(), cart.getProductRate(), cart.getResKey(), cart.getProductKey(), cart.getQuantity(), (int) cart.getSum());
+                app.cart.addProduct(foodBasket);
             }
-            app.basket.calculateBasket();
-            updateBasket();
+            app.cart.calculateCart();
+            updateCart();
         }
 
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.layoutViewBasket) {
+        if (v.getId() == R.id.layoutViewCart) {
 
-            BasketDialogFragment dialog = new BasketDialogFragment(app.basket);
+            CartDialogFragment dialog = new CartDialogFragment(app.cart);
             dialog.show(getSupportFragmentManager(), "basket_dialog");
         }
     }
 
     @Override
-    public void onFoodItemClick(Food food) {
+    public void onProductItemClick(Product product) {
         int quantity = 1;
-        double price = food.getPrice();
+        double price = product.getPrice();
 
-        FoodBasket foodBasket = app.basket.getFood(food.getFoodKey());
+        ProductCart foodBasket = app.cart.getProduct(product.getProductKey());
 
         if(foodBasket == null)
-            foodBasket = new FoodBasket(food, quantity, price);
+            foodBasket = new ProductCart(product, quantity, price);
 
-        AddToBasketFragment dialog = new AddToBasketFragment(foodBasket);
+        AddToCartFragment dialog = new AddToCartFragment(foodBasket);
         dialog.show(getSupportFragmentManager(), "add_to_basket_dialog");
     }
-    public void updateBasket() {
-        tvTotalItems.setText(String.valueOf(app.basket.getTotalItem()));
-        tvTotalPrices.setText(String.valueOf(app.basket.getTotalPrice()));
+    public void updateCart() {
+        tvTotalItems.setText(String.valueOf(app.cart.getTotalItem()));
+        tvTotalPrices.setText(String.valueOf(app.cart.getTotalPrice()));
         Log.d("ABC", map.size()+"");
     }
 }

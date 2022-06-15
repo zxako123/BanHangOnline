@@ -12,7 +12,7 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/basket"
+            android:text="@string/cart"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/largeFontSize"
             android:textStyle="normal" />
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/mediumSpace"
         android:background="@drawable/bg_green_border_button"
-        android:text="@string/add_to_basket"
+        android:text="@string/add_to_cart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/mediumFontSize" />

@@ -19,8 +19,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.banhangonline.Adapter.FoodBasketAdapter;
-import com.example.banhangonline.Model.Basket;
+import com.example.banhangonline.Adapter.ProductCartAdapter;
+import com.example.banhangonline.Model.Cart;
 import com.example.banhangonline.OrderActivity;
 import com.example.banhangonline.R;
 
@@ -31,11 +31,11 @@ import java.util.ArrayList;
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class BasketDialogFragment extends DialogFragment implements View.OnClickListener {
+public class CartDialogFragment extends DialogFragment implements View.OnClickListener {
     public TextView tvTotal;
-    public RecyclerView rvFoods;
-    public Basket basket;
-    public FoodBasketAdapter adapter;
+    public RecyclerView rvProducts;
+    public Cart cart;
+    public ProductCartAdapter adapter;
     public Button btnPlaceOrder;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -55,11 +55,11 @@ public class BasketDialogFragment extends DialogFragment implements View.OnClick
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BasketDialogFragment.
+     * @return A new instance of fragment CartDialogFragment.
      */
      // TODO: Rename and change types and number of parameters
-    public static BasketDialogFragment newInstance(String param1, String param2) {
-        BasketDialogFragment fragment = new BasketDialogFragment();
+    public static CartDialogFragment newInstance(String param1, String param2) {
+        CartDialogFragment fragment = new CartDialogFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -75,29 +75,29 @@ public class BasketDialogFragment extends DialogFragment implements View.OnClick
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    public BasketDialogFragment() {
+    public CartDialogFragment() {
         // Required empty public constructor
     }
     @SuppressLint("ValidFragment")
-    public BasketDialogFragment(Basket basket) {
-        this.basket = basket;
+    public CartDialogFragment(Cart cart) {
+        this.cart = cart;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_basket_dialog, container, false);
+        return inflater.inflate(R.layout.fragment_cart_dialog, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvTotal = view.findViewById(R.id.tvTotal);
-        tvTotal.setText(basket.getTotalPrice()+"");
-        rvFoods = view.findViewById(R.id.rvFoods);
-        adapter = new FoodBasketAdapter(new ArrayList<>(basket.foods.values()));
-        rvFoods.setAdapter(adapter);
-        rvFoods.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
+        tvTotal.setText(cart.getTotalPrice()+"");
+        rvProducts = view.findViewById(R.id.rvProduct);
+        adapter = new ProductCartAdapter(new ArrayList<>(cart.products.values()));
+        rvProducts.setAdapter(adapter);
+        rvProducts.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         btnPlaceOrder = view.findViewById(R.id.btnPlaceOrder);
         btnPlaceOrder.setOnClickListener(this);
 
@@ -112,9 +112,9 @@ public class BasketDialogFragment extends DialogFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnPlaceOrder) {
-            if (basket.getTotalItem() > 0) {
+            if (cart.getTotalItem() > 0) {
                 Intent intent = new Intent(getContext(), OrderActivity.class);
-                intent.putExtra("basket", basket);
+                intent.putExtra("cart", cart);
                 startActivity(intent);
                 getActivity().finish();
                 getDialog().dismiss();

@@ -19,27 +19,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.banhangonline.App;
+import com.example.banhangonline.Model.ProductCart;
 import com.example.banhangonline.Room.Cart;
-import com.example.banhangonline.Model.FoodBasket;
 import com.example.banhangonline.R;
-import com.example.banhangonline.RestaurantDetailActivity;
+import com.example.banhangonline.StoreDetailActivity;
 import com.example.banhangonline.Room.CartRepository;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddToBasketFragment#newInstance} factory method to
+ * Use the {@link AddToCartFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddToBasketFragment extends DialogFragment implements View.OnClickListener{
+public class AddToCartFragment extends DialogFragment implements View.OnClickListener{
 
     TextView txtName, txtPrice,txtQuantity;
     Button btnBook;
     ImageView btnSubtract, btnAdd;
-    FoodBasket foodBasket;
+    ProductCart productCart;
     int q = 0;
     double p = 0;
     boolean flag = false;
-    String foodKey;
+    String productKey;
 
     App app;
     CartRepository cartRepository;
@@ -52,7 +52,7 @@ public class AddToBasketFragment extends DialogFragment implements View.OnClickL
     private String mParam1;
     private String mParam2;
 
-    public AddToBasketFragment() {
+    public AddToCartFragment() {
         // Required empty public constructor
     }
 
@@ -62,11 +62,11 @@ public class AddToBasketFragment extends DialogFragment implements View.OnClickL
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddToBasketFragment.
+     * @return A new instance of fragment AddToCartFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddToBasketFragment newInstance(String param1, String param2) {
-        AddToBasketFragment fragment = new AddToBasketFragment();
+    public static AddToCartFragment newInstance(String param1, String param2) {
+        AddToCartFragment fragment = new AddToCartFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,8 +76,8 @@ public class AddToBasketFragment extends DialogFragment implements View.OnClickL
 
 
     @SuppressLint("ValidFragment")
-    public AddToBasketFragment(FoodBasket food) {
-        this.foodBasket = food;
+    public AddToCartFragment(ProductCart food) {
+        this.productCart = food;
         Log.d("ABC", food.toString());
     }
 
@@ -94,7 +94,7 @@ public class AddToBasketFragment extends DialogFragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_to_basket, container, false);
+        return inflater.inflate(R.layout.fragment_add_to_cart, container, false);
     }
 
     @Override
@@ -112,8 +112,8 @@ public class AddToBasketFragment extends DialogFragment implements View.OnClickL
 
 
         cartRepository = new CartRepository(getActivity().getApplication());
-        txtName.setText(foodBasket.getName());
-        txtPrice.setText(foodBasket.getPrice() + " VND");
+        txtName.setText(productCart.getName());
+        txtPrice.setText(productCart.getPrice() + " VND");
         updateStats();
 
         app = (App) getActivity().getApplication();
@@ -134,36 +134,36 @@ public class AddToBasketFragment extends DialogFragment implements View.OnClickL
         int id = v.getId();
         switch (id) {
             case R.id.btnSubtract:
-                foodBasket.decrease();
+                productCart.decrease();
                 updateStats();
                 break;
             case R.id.btnAdd:
-                foodBasket.increase();
+                productCart.increase();
                 updateStats();
                 break;
             case R.id.btnLogout:
-                if (foodBasket.quantity > 0) {
-                    app.basket.addFood(foodBasket);
-                    Cart cart = new Cart(foodBasket.getFoodKey(), foodBasket.getName(), foodBasket.getPrice(), foodBasket.getImage(), foodBasket.getRate(), foodBasket.getResKey(), foodBasket.getQuantity(), foodBasket.getSum());
+                if (productCart.quantity > 0) {
+                    app.cart.addProduct(productCart);
+                    Cart cart = new Cart(productCart.getProductKey(), productCart.getName(), productCart.getPrice(), productCart.getImage(), productCart.getRate(), productCart.getResKey(), productCart.getQuantity(), productCart.getSum());
                     cartRepository.insert(cart);
                     getDialog().dismiss();
-                } else if(foodBasket.getQuantity() == 0){
-                    cartRepository.deleteOneCart(foodBasket.getFoodKey());
+                } else if(productCart.getQuantity() == 0){
+                    cartRepository.deleteOneCart(productCart.getProductKey());
                 }
 
-                ((RestaurantDetailActivity) getActivity()).onResume();
-                ((RestaurantDetailActivity) getActivity()).updateBasket();
+                ((StoreDetailActivity) getActivity()).onResume();
+                ((StoreDetailActivity) getActivity()).updateCart();
                 break;
         }
     }
 
     private void updateStats() {
-        if (foodBasket.getQuantity() > 0) {
-            txtQuantity.setText(String.valueOf(foodBasket.getQuantity()));
-            String add = getResources().getString(R.string.add_to_basket);
-            btnBook.setText(add + " : " + foodBasket.getSum()+ " VND");
-        } else if(foodBasket.getQuantity()==0){
-            txtQuantity.setText(String.valueOf(foodBasket.getQuantity()));
+        if (productCart.getQuantity() > 0) {
+            txtQuantity.setText(String.valueOf(productCart.getQuantity()));
+            String add = getResources().getString(R.string.add_to_cart);
+            btnBook.setText(add + " : " + productCart.getSum()+ " VND");
+        } else if(productCart.getQuantity()==0){
+            txtQuantity.setText(String.valueOf(productCart.getQuantity()));
             btnBook.setText(getResources().getString(R.string.back_to_menu));
         }
     }

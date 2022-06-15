@@ -1,5 +1,6 @@
 package com.example.banhangonline.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,9 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.banhangonline.Adapter.FoodAdapter;
-import com.example.banhangonline.Model.Food;
+import com.example.banhangonline.Adapter.StoreAdapter;
+import com.example.banhangonline.Model.Store;
 import com.example.banhangonline.R;
+import com.example.banhangonline.StoreDetailActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,20 +26,20 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TopFoodFragment#newInstance} factory method to
+ * Use the {@link StoreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TopFoodFragment extends Fragment implements FoodAdapter.OnFoodItemClickListener {
+public class StoreFragment extends Fragment implements StoreAdapter.OnStoreItemClickListener {
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference reference;
-    ArrayList<Food> topFoods;
-    FoodAdapter foodAdapter;
-    RecyclerView rvTopFood;
+    RecyclerView rvStores;
+    StoreAdapter storeAdapter;
+    ArrayList<Store> stores;
+    FirebaseDatabase fDatabase;
+    DatabaseReference dStore;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -47,7 +49,7 @@ public class TopFoodFragment extends Fragment implements FoodAdapter.OnFoodItemC
     private String mParam1;
     private String mParam2;
 
-    public TopFoodFragment() {
+    public StoreFragment() {
         // Required empty public constructor
     }
 
@@ -57,11 +59,11 @@ public class TopFoodFragment extends Fragment implements FoodAdapter.OnFoodItemC
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TopFoodFragment.
+     * @return A new instance of fragment StoreFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TopFoodFragment newInstance(String param1, String param2) {
-        TopFoodFragment fragment = new TopFoodFragment();
+    public static StoreFragment newInstance(String param1, String param2) {
+        StoreFragment fragment = new StoreFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,7 +78,7 @@ public class TopFoodFragment extends Fragment implements FoodAdapter.OnFoodItemC
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        topFoods = new ArrayList<>();
+        stores = new ArrayList<>();
 
     }
 
@@ -84,33 +86,33 @@ public class TopFoodFragment extends Fragment implements FoodAdapter.OnFoodItemC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_food, container, false);
+        return inflater.inflate(R.layout.fragment_store, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvTopFood = view.findViewById(R.id.rvTopFood);
-        foodAdapter = new FoodAdapter(topFoods, this);
-        rvTopFood.setAdapter(foodAdapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        rvTopFood.setLayoutManager(layoutManager);
-        rvTopFood.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference();
+        rvStores = view.findViewById(R.id.rvStore);
+        storeAdapter = new StoreAdapter(stores,this,1);
+        rvStores.setAdapter(storeAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
+        rvStores.setLayoutManager(layoutManager);
+        rvStores.addItemDecoration(new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL));
 
-        Query query = reference.child("foods");
-        query.addValueEventListener(new ValueEventListener() {
+        fDatabase = FirebaseDatabase.getInstance();
+        dStore = fDatabase.getReference();
+
+        Query qRestaurant = dStore.child("stores");
+        qRestaurant.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                topFoods.clear();
+                stores.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Food food = dataSnapshot.getValue(Food.class);
-                    topFoods.add(food);
+                    Store store = dataSnapshot.getValue(Store.class);
+                    stores.add(store);
                 }
-                Collections.sort(topFoods);
-                foodAdapter.notifyDataSetChanged();
+                storeAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -122,7 +124,9 @@ public class TopFoodFragment extends Fragment implements FoodAdapter.OnFoodItemC
 
 
     @Override
-    public void onFoodItemClick(Food food) {
-
+    public void onStoreItemClick(Store store) {
+        Intent intent = new Intent(getContext(), StoreDetailActivity.class);
+        intent.putExtra("store", store);
+        startActivity(intent);
     }
 }

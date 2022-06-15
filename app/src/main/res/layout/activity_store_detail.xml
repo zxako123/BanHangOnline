@@ -58,7 +58,7 @@
                 android:background="@color/colorPrimary" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvFoods"
+                android:id="@+id/rvProduct"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -68,7 +68,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
-        android:id="@+id/layoutViewBasket"
+        android:id="@+id/layoutViewCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/mediumSpace"
@@ -79,7 +79,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_view_basket"
+            android:text="@string/text_view_cart"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/mediumFontSize" />
 

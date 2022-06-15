@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.TopRestaurantFragment">
+    tools:context=".Fragment.TopProductFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTopRestaurant"
-        tools:listitem="@layout/row_top_restaurant"
         android:layout_width="match_parent"
+        android:id="@+id/rvTopProduct"
+        tools:listitem="@layout/fragment_top_product"
         android:layout_height="match_parent" />
 </FrameLayout>

@@ -2,23 +2,23 @@ package com.example.banhangonline.Model;
 
 import java.util.ArrayList;
 
-public class OrderFinished extends FoodBasket {
+public class OrderFinished extends ProductCart {
     String orderID;
     String orderDate;
     String orderSum;
     int orderStatus;
     String userUID;
-    ArrayList<FoodBasket> foodBaskets;
+    ArrayList<ProductCart> productCarts;
     public OrderFinished() {
     }
 
-    public OrderFinished(String orderID, String orderDate, String orderSum, int orderStatus, String userUID, ArrayList<FoodBasket> foodBaskets) {
+    public OrderFinished(String orderID, String orderDate, String orderSum, int orderStatus, String userUID, ArrayList<ProductCart> productCarts) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.orderSum = orderSum;
         this.orderStatus = orderStatus;
         this.userUID = userUID;
-        this.foodBaskets = foodBaskets;
+        this.productCarts = productCarts;
     }
 
     public String getOrderID() {
@@ -61,11 +61,11 @@ public class OrderFinished extends FoodBasket {
         this.userUID = userUID;
     }
 
-    public ArrayList<FoodBasket> getFoodBaskets() {
-        return foodBaskets;
+    public ArrayList<ProductCart> getProductCarts() {
+        return productCarts;
     }
 
-    public void setFoodBaskets(ArrayList<FoodBasket> foodBaskets) {
-        this.foodBaskets = foodBaskets;
+    public void setProductCarts(ArrayList<ProductCart> productCarts) {
+        this.productCarts = productCarts;
     }
 }

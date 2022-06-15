@@ -31,27 +31,40 @@
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/activity_restaurant_detail.xml" value="0.264" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/activity_store_detail.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/activity_welcome.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/custom_action_item_menu.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_add_to_basket.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_add_to_basket.xml" value="0.8" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_add_to_cart.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_address.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_basket_dialog.xml" value="0.264" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_cart_dialog.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_full_name.xml" value="0.2" />
-        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_home.xml" value="0.8" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_home.xml" value="0.4" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_logout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_order.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_restaurant.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_store.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_top_food.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_top_items.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_top_restaurant.xml" value="0.4" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_top_stores.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/fragment_user_pass.xml" value="0.264" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/layout_restaurant.xml" value="0.264" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/layout_store.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_basket.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_cart.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_order_finished.xml" value="0.264" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_restaurant.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_store.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_top_food.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_top_item.xml" value="0.11614583333333334" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_top_items.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_top_restaurant.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_top_store.xml" value="0.11614583333333334" />
+        <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/layout/row_top_stores.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Progin/Desktop/School/BanHangOnline/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
       </map>
     </option>

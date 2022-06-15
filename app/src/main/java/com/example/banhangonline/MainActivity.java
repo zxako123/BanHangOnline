@@ -21,7 +21,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.banhangonline.Model.FoodBasket;
+import com.example.banhangonline.Model.ProductCart;
 import com.example.banhangonline.Model.User;
 import com.example.banhangonline.Room.Cart;
 import com.example.banhangonline.Room.CartRepository;
@@ -153,11 +153,11 @@ public class MainActivity extends AppCompatActivity {
         }
         for(int i=0;i<carts.size();i++){
             Cart cart = carts.get(i);
-            FoodBasket foodBasket = new FoodBasket(cart.getFoodName(), cart.getFoodImage(), cart.getFoodPrice(), cart.getFoodRate(), cart.getResKey(), cart.getFoodKey(), cart.getQuantity(), (int) cart.getSum());
-            app.basket.addFood(foodBasket);
+            ProductCart foodBasket = new ProductCart(cart.getProductName(), cart.getProductImage(), cart.getProductPrice(), cart.getProductRate(), cart.getResKey(), cart.getProductKey(), cart.getQuantity(), (int) cart.getSum());
+            app.cart.addProduct(foodBasket);
         }
-        app.basket.calculateBasket();
-        mCartItemCount = app.basket.totalItem;
+        app.cart.calculateCart();
+        mCartItemCount = app.cart.totalItem;
         setupBadge();
 
     }

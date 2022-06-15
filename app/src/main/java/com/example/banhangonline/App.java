@@ -2,23 +2,23 @@ package com.example.banhangonline;
 
 import android.app.Application;
 
-import com.example.banhangonline.Model.Basket;
+import com.example.banhangonline.Model.Cart;
 
 public class App extends Application{
-    public Basket basket;
+    public Cart cart;
     public App(){
-        basket = new Basket();
+        cart = new Cart();
     }
 
-    public App(Basket basket) {
-        this.basket = basket;
+    public App(Cart cart) {
+        this.cart = cart;
     }
 
-    public Basket getBasket() {
-        return basket;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setBasket(Basket basket) {
-        this.basket = basket;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

@@ -9,16 +9,16 @@ import androidx.room.PrimaryKey;
 public class Cart {
     @PrimaryKey(autoGenerate = true)
     int id;
-    @ColumnInfo(name = "foodKey")
-    String foodKey;
-    @ColumnInfo(name = "foodName")
-    String foodName;
-    @ColumnInfo(name = "foodPrice")
-    int foodPrice;
+    @ColumnInfo(name = "productKey")
+    String productKey;
+    @ColumnInfo(name = "productName")
+    String productName;
+    @ColumnInfo(name = "productPrice")
+    int productPrice;
     @ColumnInfo(name= "image")
-    String foodImage;
+    String productImage;
     @ColumnInfo(name = "rate")
-    int foodRate;
+    int productRate;
     @ColumnInfo(name = "reskey")
     String resKey;
     @ColumnInfo(name = "quantity")
@@ -29,12 +29,12 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(String foodKey, String foodName, int foodPrice, String foodImage, int foodRate, String resKey, int quantity, double sum) {
-        this.foodKey = foodKey;
-        this.foodName = foodName;
-        this.foodPrice = foodPrice;
-        this.foodImage = foodImage;
-        this.foodRate = foodRate;
+    public Cart(String productKey, String productName, int productPrice, String productImage, int productRate, String resKey, int quantity, double sum) {
+        this.productKey = productKey;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productImage = productImage;
+        this.productRate = productRate;
         this.resKey = resKey;
         this.quantity = quantity;
         this.sum = sum;
@@ -47,43 +47,43 @@ public class Cart {
         this.id = id;
     }
 
-    public String getFoodKey() {
-        return foodKey;
+    public String getProductKey() {
+        return productKey;
     }
 
-    public void setFoodKey(String foodKey) {
-        this.foodKey = foodKey;
+    public void setProductKey(String productKey) {
+        this.productKey = productKey;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public int getFoodPrice() {
-        return foodPrice;
+    public int getProductPrice() {
+        return productPrice;
     }
 
-    public void setFoodPrice(int foodPrice) {
-        this.foodPrice = foodPrice;
+    public void setProductPrice(int productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public String getFoodImage() {
-        return foodImage;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setFoodImage(String foodImage) {
-        this.foodImage = foodImage;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
-    public int getFoodRate() {
-        return foodRate;
+    public int getProductRate() {
+        return productRate;
     }
-    public void setFoodRate(int foodRate) {
-        this.foodRate = foodRate;
+    public void setProductRate(int productRate) {
+        this.productRate = productRate;
     }
 
     public String getResKey() {

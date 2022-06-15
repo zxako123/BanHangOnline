@@ -2,24 +2,24 @@ package com.example.banhangonline.Model;
 
 import java.io.Serializable;
 
-public class Food implements Serializable, Comparable<Food> {
+public class Product implements Serializable, Comparable<Product> {
     String name;
     String image;
     int price;
     int rate;
     String resKey;
-    String foodKey;
+    String productKey;
 
-    public Food() {
+    public Product() {
     }
 
-    public Food(String name, String image, int price, int rate, String resKey, String foodKey) {
+    public Product(String name, String image, int price, int rate, String resKey, String productKey) {
         this.name = name;
         this.image = image;
         this.price = price;
         this.rate = rate;
         this.resKey = resKey;
-        this.foodKey = foodKey;
+        this.productKey = productKey;
     }
 
     public String getName() {
@@ -62,28 +62,28 @@ public class Food implements Serializable, Comparable<Food> {
         this.resKey = resKey;
     }
 
-    public String getFoodKey() {
-        return foodKey;
+    public String getProductKey() {
+        return productKey;
     }
 
-    public void setFoodKey(String foodKey) {
-        this.foodKey = foodKey;
+    public void setProductKey(String productKey) {
+        this.productKey = productKey;
     }
 
     @Override
     public String toString() {
-        return "Food{" +
+        return "Product{" +
                 "name='" + name + '\'' +
                 ", image=" + image +
                 ", price=" + price +
                 ", rate=" + rate +
                 ", resKey='" + resKey + '\'' +
-                ", foodKey='" + foodKey + '\'' +
+                ", foodKey='" + productKey + '\'' +
                 '}';
     }
 
     @Override
-    public int compareTo(Food food) {
-        return Integer.compare(food.rate, rate);
+    public int compareTo(Product product) {
+        return Integer.compare(product.rate, rate);
     }
 }

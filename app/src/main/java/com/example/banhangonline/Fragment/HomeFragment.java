@@ -97,13 +97,13 @@ public class HomeFragment extends Fragment {
         Fragment fragment = null;
         switch (pos){
             case 0:
-                fragment = new RestaurantFragment();
+                fragment = new StoreFragment();
                 break;
             case 1:
-                fragment = new TopRestaurantFragment();
+                fragment = new TopStoreFragment();
                 break;
             case 2:
-                fragment = new TopFoodFragment();
+                fragment = new TopProductFragment();
                 break;
         }
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();

@@ -11,15 +11,15 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/basket"
+        android:text="@string/cart"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/largeFontSize"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvFoods"
-        tools:listitem="@layout/row_basket"
+        android:id="@+id/rvProduct"
+        tools:listitem="@layout/row_cart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/mediumSpace" />

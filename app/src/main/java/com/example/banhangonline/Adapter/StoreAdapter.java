@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.banhangonline.Model.Restaurant;
+import com.example.banhangonline.Model.Store;
 import com.example.banhangonline.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -20,16 +20,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RestaurantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public interface OnRestaurantItemClickListener {
-        void onRestaurantItemClick(Restaurant restaurant);
+public class StoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public interface OnStoreItemClickListener {
+        void onStoreItemClick(Store store);
     }
 
-    public class ViewHolderRestaurant extends RecyclerView.ViewHolder {
+    public class ViewHolderStore extends RecyclerView.ViewHolder {
         TextView tvName, tvAddress, tvOpenHour;
         ImageView ivImage;
 
-        public ViewHolderRestaurant(View itemView) {
+        public ViewHolderStore(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             ivImage = itemView.findViewById(R.id.ivImage);
@@ -38,11 +38,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
-    public class ViewHolderTopRestaurant extends RecyclerView.ViewHolder {
+    public class ViewHolderTopStore extends RecyclerView.ViewHolder {
         TextView tvName, tvAddress, tvRate;
         ImageView ivImage;
 
-        public ViewHolderTopRestaurant(View itemView) {
+        public ViewHolderTopStore(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             ivImage = itemView.findViewById(R.id.ivImage);
@@ -51,12 +51,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
-    private List<Restaurant> mRestaurants;
-    private OnRestaurantItemClickListener mListener;
+    private List<Store> mStores;
+    private OnStoreItemClickListener mListener;
     private int TYPE_LAYOUT;
 
-    public RestaurantAdapter(List<Restaurant> restaurants, OnRestaurantItemClickListener listener, int type_layout) {
-        mRestaurants = restaurants;
+    public StoreAdapter(List<Store> stores, OnStoreItemClickListener listener, int type_layout) {
+        mStores = stores;
         mListener = listener;
         TYPE_LAYOUT = type_layout;
     }
@@ -69,52 +69,52 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         LayoutInflater inflater = LayoutInflater.from(context);
 
         if (TYPE_LAYOUT == 1) {
-            View view = inflater.inflate(R.layout.row_restaurant, parent, false);
-            return new ViewHolderRestaurant(view);
+            View view = inflater.inflate(R.layout.row_store, parent, false);
+            return new ViewHolderStore(view);
         } else {
-            View view = inflater.inflate(R.layout.row_top_restaurant, parent, false);
-            return new ViewHolderTopRestaurant(view);
+            View view = inflater.inflate(R.layout.row_top_store, parent, false);
+            return new ViewHolderTopStore(view);
 
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Restaurant restaurant = mRestaurants.get(position);
+        Store store = mStores.get(position);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         if (TYPE_LAYOUT == 1) {
-            ViewHolderRestaurant viewHolderRestaurant = (ViewHolderRestaurant) holder;
-            StorageReference profileRef = storageReference.child("restaurants/" + restaurant.getLogo());
+            ViewHolderStore viewHolderStore = (ViewHolderStore) holder;
+            StorageReference profileRef = storageReference.child("restaurants/" + store.getLogo());
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Picasso.get().load(uri).into(viewHolderRestaurant.ivImage);
+                    Picasso.get().load(uri).into(viewHolderStore.ivImage);
                 }
             });
-            viewHolderRestaurant.tvName.setText(restaurant.getName());
-            viewHolderRestaurant.tvAddress.setText(restaurant.getAddress());
-            viewHolderRestaurant.tvOpenHour.setText(restaurant.openHours);
-            viewHolderRestaurant.itemView.setOnClickListener(new View.OnClickListener() {
+            viewHolderStore.tvName.setText(store.getName());
+            viewHolderStore.tvAddress.setText(store.getAddress());
+            viewHolderStore.tvOpenHour.setText(store.openHours);
+            viewHolderStore.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mListener.onRestaurantItemClick(restaurant);
+                    mListener.onStoreItemClick(store);
                 }
             });
         } else {
-            ViewHolderTopRestaurant viewHolderTopRestaurant = (ViewHolderTopRestaurant) holder;
-            StorageReference profileRef = storageReference.child("restaurants/" + restaurant.getLogo());
+            ViewHolderTopStore viewHolderTopStore = (ViewHolderTopStore) holder;
+            StorageReference profileRef = storageReference.child("restaurants/" + store.getLogo());
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Picasso.get().load(uri).into(viewHolderTopRestaurant.ivImage);
+                    Picasso.get().load(uri).into(viewHolderTopStore.ivImage);
                 }
             });
-            viewHolderTopRestaurant.tvName.setText(restaurant.getName());
-            viewHolderTopRestaurant.tvRate.setText("Rate: ".concat(String.valueOf(restaurant.rate)));
-            viewHolderTopRestaurant.itemView.setOnClickListener(new View.OnClickListener() {
+            viewHolderTopStore.tvName.setText(store.getName());
+            viewHolderTopStore.tvRate.setText("Rate: ".concat(String.valueOf(store.rate)));
+            viewHolderTopStore.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mListener.onRestaurantItemClick(restaurant);
+                    mListener.onStoreItemClick(store);
                 }
             });
         }
@@ -123,6 +123,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return mRestaurants.size();
+        return mStores.size();
     }
 }

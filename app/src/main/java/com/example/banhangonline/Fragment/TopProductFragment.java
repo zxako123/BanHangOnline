@@ -6,15 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.banhangonline.Adapter.RestaurantAdapter;
-import com.example.banhangonline.Model.Restaurant;
+import com.example.banhangonline.Adapter.ProductAdapter;
+import com.example.banhangonline.Model.Product;
 import com.example.banhangonline.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,20 +24,20 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TopRestaurantFragment#newInstance} factory method to
+ * Use the {@link TopProductFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TopRestaurantFragment extends Fragment implements RestaurantAdapter.OnRestaurantItemClickListener {
+public class TopProductFragment extends Fragment implements ProductAdapter.OnProductItemClickListener {
 
     FirebaseDatabase firebaseDatabase;
-    RestaurantAdapter restaurantAdapter;
-    ArrayList<Restaurant> topRestaurants;
-    RecyclerView rvTopRestaurant;
     DatabaseReference reference;
-
+    ArrayList<Product> topProducts;
+    ProductAdapter productAdapter;
+    RecyclerView rvTopProduct;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -47,7 +47,7 @@ public class TopRestaurantFragment extends Fragment implements RestaurantAdapter
     private String mParam1;
     private String mParam2;
 
-    public TopRestaurantFragment() {
+    public TopProductFragment() {
         // Required empty public constructor
     }
 
@@ -57,11 +57,11 @@ public class TopRestaurantFragment extends Fragment implements RestaurantAdapter
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TopRestaurantFragment.
+     * @return A new instance of fragment TopProductFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TopRestaurantFragment newInstance(String param1, String param2) {
-        TopRestaurantFragment fragment = new TopRestaurantFragment();
+    public static TopProductFragment newInstance(String param1, String param2) {
+        TopProductFragment fragment = new TopProductFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,7 +76,7 @@ public class TopRestaurantFragment extends Fragment implements RestaurantAdapter
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        topRestaurants = new ArrayList<>();
+        topProducts = new ArrayList<>();
 
     }
 
@@ -84,31 +84,33 @@ public class TopRestaurantFragment extends Fragment implements RestaurantAdapter
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_restaurant, container, false);
+        return inflater.inflate(R.layout.fragment_top_product, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvTopRestaurant = view.findViewById(R.id.rvTopRestaurant);
-        restaurantAdapter = new RestaurantAdapter(topRestaurants, this, 0);
-        rvTopRestaurant.setAdapter(restaurantAdapter);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
-        rvTopRestaurant.setLayoutManager(layoutManager);
-        rvTopRestaurant.addItemDecoration(new DividerItemDecoration(getContext(), GridLayoutManager.VERTICAL));
+        rvTopProduct = view.findViewById(R.id.rvTopProduct);
+        productAdapter = new ProductAdapter(topProducts, this);
+        rvTopProduct.setAdapter(productAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rvTopProduct.setLayoutManager(layoutManager);
+        rvTopProduct.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference();
 
-        Query query = reference.child("restaurants").orderByChild("rate").limitToLast(3);
+        Query query = reference.child("foods");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                topRestaurants.clear();
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Restaurant restaurant = dataSnapshot.getValue(Restaurant.class);
-                    topRestaurants.add(restaurant);
+                topProducts.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Product product = dataSnapshot.getValue(Product.class);
+                    topProducts.add(product);
                 }
-                restaurantAdapter.notifyDataSetChanged();
+                Collections.sort(topProducts);
+                productAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -120,7 +122,7 @@ public class TopRestaurantFragment extends Fragment implements RestaurantAdapter
 
 
     @Override
-    public void onRestaurantItemClick(Restaurant restaurant) {
+    public void onProductItemClick(Product product) {
 
     }
 }

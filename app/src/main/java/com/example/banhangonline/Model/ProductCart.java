@@ -1,36 +1,36 @@
 package com.example.banhangonline.Model;
 
-public class FoodBasket extends Food {
+public class ProductCart extends Product {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
     public int quantity;
     public double sum;
-    public Food food;
+    public Product product;
 
-    public FoodBasket() {
+    public ProductCart() {
         super();
     }
 
-    public FoodBasket(String name, String image, int price, int rate, String resKey, String foodKey, int quantity, int sum) {
+    public ProductCart(String name, String image, int price, int rate, String resKey, String foodKey, int quantity, int sum) {
         this.name = name;
         this.image = image;
         this.price = price;
         this.rate = rate;
         this.resKey = resKey;
-        this.foodKey = foodKey;
+        this.productKey = foodKey;
         this.quantity = quantity;
         this.sum = sum;
     }
 
-    public FoodBasket(Food food, int quantity, double sum){
-        this.name = food.getName();
-        this.image = food.getImage();
-        this.price = food.getPrice();
-        this.rate = food.getRate();
-        this.resKey = food.getResKey();
-        this.foodKey = food.getFoodKey();
+    public ProductCart(Product product, int quantity, double sum){
+        this.name = product.getName();
+        this.image = product.getImage();
+        this.price = product.getPrice();
+        this.rate = product.getRate();
+        this.resKey = product.getResKey();
+        this.productKey = product.getProductKey();
         this.quantity = quantity;
         this.sum = sum;
     }
@@ -46,12 +46,12 @@ public class FoodBasket extends Food {
         }
     }
 
-    public Food getFood() {
-        return food;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setFood(Food food) {
-        this.food = food;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public double getSum() {
@@ -66,7 +66,7 @@ public class FoodBasket extends Food {
 
     @Override
     public String toString() {
-        return "FoodBasket{" +
+        return "ProductCart{" +
                 "quantity=" + quantity +
                 ", sum=" + sum +
                 ", resKey='" + resKey + '\'' +
