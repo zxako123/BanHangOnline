@@ -21,8 +21,8 @@ public interface CartDao {
 
     @Delete
     void deleteCart(Cart cart);
-    @Query("DELETE FROM Cart WHERE productKey =:foodKey")
-    void deleteOneCart(String foodKey);
+    @Query("DELETE FROM Cart WHERE productKey =:productKey")
+    void deleteOneCart(String productKey);
 
     @Update
     void updateCart(Cart cart);

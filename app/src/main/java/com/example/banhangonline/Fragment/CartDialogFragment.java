@@ -94,7 +94,7 @@ public class CartDialogFragment extends DialogFragment implements View.OnClickLi
         super.onViewCreated(view, savedInstanceState);
         tvTotal = view.findViewById(R.id.tvTotal);
         tvTotal.setText(cart.getTotalPrice()+"");
-        rvProducts = view.findViewById(R.id.rvProduct);
+        rvProducts = view.findViewById(R.id.rvProducts);
         adapter = new ProductCartAdapter(new ArrayList<>(cart.products.values()));
         rvProducts.setAdapter(adapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));

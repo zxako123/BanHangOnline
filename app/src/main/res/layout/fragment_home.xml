@@ -23,16 +23,19 @@
             app:tabMode="fixed">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabStore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/store" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabTopStore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/topstore" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabTopProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/topproduct" />

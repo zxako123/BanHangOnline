@@ -115,7 +115,7 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
         }
         tvTotal = findViewById(R.id.tvTotal);
         tvTotal.setText(cart.getTotalPrice()+"");
-        rvProducts = findViewById(R.id.rvProduct);
+        rvProducts = findViewById(R.id.rvProducts);
         adapter = new ProductCartAdapter(new ArrayList<>(cart.products.values()));
         rvProducts.setAdapter(adapter);
         rvProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
@@ -127,13 +127,13 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
                 String orderKey = fDatabase.getReference().child("orders").push().getKey();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String orderDate = sdf.format(System.currentTimeMillis());
-                ArrayList<ProductCart> foodBaskets = new ArrayList<>();
+                ArrayList<ProductCart> productCarts = new ArrayList<>();
 //                for (int i = 0; i< cart.products.size();i++){
-//                    foodBaskets.add(cart.getProduct(i+""));
+//                    productCarts.add(cart.getProduct(i+""));
 //                }
-                foodBaskets.addAll(cart.products.values());
-                Log.d("DEF", foodBaskets.size()+"");
-                OrderFinished orderFinished = new OrderFinished(orderKey, orderDate, cart.getTotalPrice(), 1, userID, foodBaskets);
+                productCarts.addAll(cart.products.values());
+                Log.d("DEF", productCarts.size()+"");
+                OrderFinished orderFinished = new OrderFinished(orderKey, orderDate, cart.getTotalPrice(), 1, userID, productCarts);
                 fDatabase.getReference().child("orders").child(userID).child(orderKey).setValue(orderFinished)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

@@ -98,6 +98,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView9"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:src="@drawable/ic_address"
@@ -106,6 +107,7 @@
         app:layout_constraintTop_toTopOf="@+id/edtAddressProfile" />
 
     <ImageView
+        android:id="@+id/imageView10"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:src="@drawable/ic_user"
@@ -114,6 +116,7 @@
         app:layout_constraintTop_toTopOf="@+id/edtName" />
 
     <ImageView
+        android:id="@+id/imageView11"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:src="@drawable/icon_email"
@@ -122,6 +125,7 @@
         app:layout_constraintTop_toTopOf="@+id/edtEmailProfile" />
 
     <ImageView
+        android:id="@+id/imageView12"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:src="@drawable/ic_phone"

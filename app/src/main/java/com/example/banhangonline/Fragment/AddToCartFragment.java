@@ -19,8 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.banhangonline.App;
-import com.example.banhangonline.Model.ProductCart;
 import com.example.banhangonline.Room.Cart;
+import com.example.banhangonline.Model.ProductCart;
 import com.example.banhangonline.R;
 import com.example.banhangonline.StoreDetailActivity;
 import com.example.banhangonline.Room.CartRepository;
@@ -76,9 +76,9 @@ public class AddToCartFragment extends DialogFragment implements View.OnClickLis
 
 
     @SuppressLint("ValidFragment")
-    public AddToCartFragment(ProductCart food) {
-        this.productCart = food;
-        Log.d("ABC", food.toString());
+    public AddToCartFragment(ProductCart product) {
+        this.productCart = product;
+        Log.d("ABC", product.toString());
     }
 
     @Override

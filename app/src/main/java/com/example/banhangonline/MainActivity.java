@@ -153,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
         }
         for(int i=0;i<carts.size();i++){
             Cart cart = carts.get(i);
-            ProductCart foodBasket = new ProductCart(cart.getProductName(), cart.getProductImage(), cart.getProductPrice(), cart.getProductRate(), cart.getResKey(), cart.getProductKey(), cart.getQuantity(), (int) cart.getSum());
-            app.cart.addProduct(foodBasket);
+            ProductCart productCart = new ProductCart(cart.getProductName(), cart.getProductImage(), cart.getProductPrice(), cart.getProductRate(), cart.getResKey(), cart.getProductKey(), cart.getQuantity(), (int) cart.getSum());
+            app.cart.addProduct(productCart);
         }
         app.cart.calculateCart();
         mCartItemCount = app.cart.totalItem;

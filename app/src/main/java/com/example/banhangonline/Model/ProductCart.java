@@ -13,13 +13,13 @@ public class ProductCart extends Product {
         super();
     }
 
-    public ProductCart(String name, String image, int price, int rate, String resKey, String foodKey, int quantity, int sum) {
+    public ProductCart(String name, String image, int price, int rate, String resKey, String productKey, int quantity, int sum) {
         this.name = name;
         this.image = image;
         this.price = price;
         this.rate = rate;
         this.resKey = resKey;
-        this.productKey = foodKey;
+        this.productKey = productKey;
         this.quantity = quantity;
         this.sum = sum;
     }

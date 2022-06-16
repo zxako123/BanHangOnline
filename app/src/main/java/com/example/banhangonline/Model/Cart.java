@@ -8,8 +8,8 @@ public class Cart implements Serializable {
     public double totalPrice;
     public int totalItem;
 
-    public Cart(HashMap<String, ProductCart> foodBasket, double price, int quantity) {
-        products = foodBasket;
+    public Cart(HashMap<String, ProductCart> productCart, double price, int quantity) {
+        products = productCart;
         totalPrice = price;
         totalItem = quantity;
     }
@@ -31,8 +31,8 @@ public class Cart implements Serializable {
     public void calculateCart() {
         totalPrice = 0;
         totalItem = 0;
-        for (ProductCart foodBasket : products.values()) {
-            totalPrice += (foodBasket.price * foodBasket.quantity);
+        for (ProductCart productCart : products.values()) {
+            totalPrice += (productCart.price * productCart.quantity);
             totalItem += 1;
         }
     }
@@ -47,7 +47,7 @@ public class Cart implements Serializable {
     @Override
     public String toString() {
         return "Cart{" +
-                "foods=" + products +
+                "products=" + products +
                 ", totalPrice=" + totalPrice +
                 ", totalItem=" + totalItem +
                 '}';

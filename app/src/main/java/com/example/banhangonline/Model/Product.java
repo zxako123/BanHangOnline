@@ -78,7 +78,7 @@ public class Product implements Serializable, Comparable<Product> {
                 ", price=" + price +
                 ", rate=" + rate +
                 ", resKey='" + resKey + '\'' +
-                ", foodKey='" + productKey + '\'' +
+                ", productKey='" + productKey + '\'' +
                 '}';
     }
 

@@ -50,12 +50,12 @@ public class ProductCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ProductCart foodBasket =  productCarts.get(position);
+        ProductCart productCart =  productCarts.get(position);
         ViewHolderProductCart viewHolderProductCart = (ViewHolderProductCart) holder;
-        viewHolderProductCart.tvName.setText(foodBasket.getName());
-        viewHolderProductCart.tvQuantity.setText(String.valueOf(foodBasket.getQuantity()));
-        viewHolderProductCart.tvPrice.setText(String.valueOf(foodBasket.getPrice()));
-        viewHolderProductCart.tvSum.setText(String.valueOf(foodBasket.getSum()));
+        viewHolderProductCart.tvName.setText(productCart.getName());
+        viewHolderProductCart.tvQuantity.setText(String.valueOf(productCart.getQuantity()));
+        viewHolderProductCart.tvPrice.setText(String.valueOf(productCart.getPrice()));
+        viewHolderProductCart.tvSum.setText(String.valueOf(productCart.getSum()));
     }
 
     @Override

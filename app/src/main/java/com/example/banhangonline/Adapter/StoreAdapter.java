@@ -84,7 +84,7 @@ public class StoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         if (TYPE_LAYOUT == 1) {
             ViewHolderStore viewHolderStore = (ViewHolderStore) holder;
-            StorageReference profileRef = storageReference.child("restaurants/" + store.getLogo());
+            StorageReference profileRef = storageReference.child("stores/" + store.getLogo());
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
@@ -102,7 +102,7 @@ public class StoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             });
         } else {
             ViewHolderTopStore viewHolderTopStore = (ViewHolderTopStore) holder;
-            StorageReference profileRef = storageReference.child("restaurants/" + store.getLogo());
+            StorageReference profileRef = storageReference.child("stores/" + store.getLogo());
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {

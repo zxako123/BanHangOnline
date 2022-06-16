@@ -7,7 +7,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:padding="@dimen/mediumSpace"
-        android:id="@+id/rvStore"
+        android:id="@+id/rvStores"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/row_store"/>

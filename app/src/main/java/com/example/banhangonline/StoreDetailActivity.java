@@ -66,7 +66,7 @@ public class StoreDetailActivity extends AppCompatActivity implements ProductAda
         tvOpenHours = findViewById(R.id.tvOpenHours);
         ivCover = findViewById(R.id.ivCover);
 
-        rvProducts = findViewById(R.id.rvProduct);
+        rvProducts = findViewById(R.id.rvProducts);
 
         productAdapter = new ProductAdapter(products, this);
         rvProducts.setAdapter(productAdapter);
@@ -83,7 +83,7 @@ public class StoreDetailActivity extends AppCompatActivity implements ProductAda
         if(product != null) {
             onProductItemClick(product);
             dStore = fDatabase.getReference();
-            Query query = dStore.child("restaurants").child(product.getResKey());
+            Query query = dStore.child("stores").child(product.getResKey());
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -93,7 +93,7 @@ public class StoreDetailActivity extends AppCompatActivity implements ProductAda
                     tvName.setText(store.name);
                     tvAddress.setText(store.address);
                     tvOpenHours.setText(store.getOpenHours());
-                    StorageReference profileRef = fStorage.getReference().child("restaurants/covers/"+ store.getCover());
+                    StorageReference profileRef = fStorage.getReference().child("stores/covers/"+ store.getCover());
                     profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
@@ -114,7 +114,7 @@ public class StoreDetailActivity extends AppCompatActivity implements ProductAda
             tvAddress.setText(store.getAddress());
             tvOpenHours.setText(store.getOpenHours());
             Log.d("IJK", store.getCover());
-            StorageReference profileRef = fStorage.getReference().child("restaurants/covers/"+ store.getCover());
+            StorageReference profileRef = fStorage.getReference().child("stores/covers/"+ store.getCover());
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
@@ -145,8 +145,8 @@ public class StoreDetailActivity extends AppCompatActivity implements ProductAda
         }
             for(int i=0;i<carts.size();i++){
                 com.example.banhangonline.Room.Cart cart = carts.get(i);
-                ProductCart foodBasket = new ProductCart(cart.getProductName(), cart.getProductImage(), cart.getProductPrice(), cart.getProductRate(), cart.getResKey(), cart.getProductKey(), cart.getQuantity(), (int) cart.getSum());
-                app.cart.addProduct(foodBasket);
+                ProductCart productCart = new ProductCart(cart.getProductName(), cart.getProductImage(), cart.getProductPrice(), cart.getProductRate(), cart.getResKey(), cart.getProductKey(), cart.getQuantity(), (int) cart.getSum());
+                app.cart.addProduct(productCart);
             }
             app.cart.calculateCart();
             updateCart();
@@ -158,7 +158,7 @@ public class StoreDetailActivity extends AppCompatActivity implements ProductAda
         if (v.getId() == R.id.layoutViewCart) {
 
             CartDialogFragment dialog = new CartDialogFragment(app.cart);
-            dialog.show(getSupportFragmentManager(), "basket_dialog");
+            dialog.show(getSupportFragmentManager(), "cart_dialog");
         }
     }
 
@@ -167,13 +167,13 @@ public class StoreDetailActivity extends AppCompatActivity implements ProductAda
         int quantity = 1;
         double price = product.getPrice();
 
-        ProductCart foodBasket = app.cart.getProduct(product.getProductKey());
+        ProductCart productCart = app.cart.getProduct(product.getProductKey());
 
-        if(foodBasket == null)
-            foodBasket = new ProductCart(product, quantity, price);
+        if(productCart == null)
+            productCart = new ProductCart(product, quantity, price);
 
-        AddToCartFragment dialog = new AddToCartFragment(foodBasket);
-        dialog.show(getSupportFragmentManager(), "add_to_basket_dialog");
+        AddToCartFragment dialog = new AddToCartFragment(productCart);
+        dialog.show(getSupportFragmentManager(), "add_to_cart_dialog");
     }
     public void updateCart() {
         tvTotalItems.setText(String.valueOf(app.cart.getTotalItem()));

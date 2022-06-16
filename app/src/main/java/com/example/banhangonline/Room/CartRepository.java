@@ -43,9 +43,9 @@ public class CartRepository {
             cartDao.deleteCart(cart);
         });
     }
-    public  void deleteOneCart(String foodKey){
+    public  void deleteOneCart(String productKey){
         AppDatabase.databaseWriteExecutor.execute(() -> {
-            cartDao.deleteOneCart(foodKey);
+            cartDao.deleteOneCart(productKey);
         });
 
     }

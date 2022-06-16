@@ -53,9 +53,9 @@
     <string name="gallery">Choose from Gallery</string>
     <string name="choose_a_photo">Take picture or choose a photo</string>
     <string name="cancel">Cancel</string>
-    <string name="finding_nearby">Finding your nearby driverâ€¦</string>
+    <string name="finding_nearby">Finding your nearby driver…</string>
     <string name="checkout">Check out</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Do you want to log out?</string>
 
 
 </resources>

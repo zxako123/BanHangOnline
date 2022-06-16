@@ -93,7 +93,7 @@ public class StoreFragment extends Fragment implements StoreAdapter.OnStoreItemC
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        rvStores = view.findViewById(R.id.rvStore);
+        rvStores = view.findViewById(R.id.rvStores);
         storeAdapter = new StoreAdapter(stores,this,1);
         rvStores.setAdapter(storeAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
@@ -103,8 +103,8 @@ public class StoreFragment extends Fragment implements StoreAdapter.OnStoreItemC
         fDatabase = FirebaseDatabase.getInstance();
         dStore = fDatabase.getReference();
 
-        Query qRestaurant = dStore.child("stores");
-        qRestaurant.addValueEventListener(new ValueEventListener() {
+        Query qStore = dStore.child("stores");
+        qStore.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 stores.clear();

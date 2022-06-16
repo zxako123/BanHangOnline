@@ -100,7 +100,7 @@ public class TopProductFragment extends Fragment implements ProductAdapter.OnPro
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference();
 
-        Query query = reference.child("foods");
+        Query query = reference.child("products");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
