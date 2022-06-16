@@ -19,7 +19,7 @@ public class Cart {
     String productImage;
     @ColumnInfo(name = "rate")
     int productRate;
-    @ColumnInfo(name = "reskey")
+    @ColumnInfo(name = "resKey")
     String resKey;
     @ColumnInfo(name = "quantity")
     int quantity;

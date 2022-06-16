@@ -10,7 +10,7 @@
         android:id="@+id/ivImage"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:src="@drawable/ic_black_coffee"
+        android:src="@drawable/ic_product_placeholder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -45,7 +45,7 @@
     <string name="text_cancel_booking">Cancel Booking</string>
     <string name="text_no_order">There are no order</string>
     <string name="cart">Cart</string>
-    <string name="book">Book</string>
+    <string name="book">Confirm</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="back_to_menu">Back to menu</string>
     <string name="place_order">Place Order</string>
