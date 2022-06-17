@@ -3,14 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.TopProductFragment">
+    tools:context=".Fragment.TopProductFragment"
+    android:background="@drawable/wood">
 
     <!-- TODO: Update blank fragment layout -->
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/rvTopProduct"
-        tools:listitem="@layout/fragment_top_product"
-        android:layout_height="match_parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:listitem="@layout/fragment_top_product" />
 </FrameLayout>

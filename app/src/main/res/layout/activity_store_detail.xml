@@ -10,7 +10,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
+            android:background="@drawable/wood"
             android:orientation="vertical">
 
             <ImageView
@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:scaleType="fitXY"
-                android:background="@drawable/cover_menu_1"/>
+                android:background="@drawable/cover"/>
 
             <TextView
                 android:id="@+id/tvName"
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/mediumSpace"
                 android:text="StoreName"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/largeFontSize"
                 android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
                 android:layout_marginLeft="@dimen/mediumSpace"
                 android:layout_marginRight="@dimen/mediumSpace"
                 android:text="Address"
-                android:textColor="@color/colorLightBlack"
+                android:textColor="@color/white"
                 android:textSize="@dimen/smallFontSize" />
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_marginTop="@dimen/mediumSpace"
                 android:layout_marginRight="@dimen/mediumSpace"
                 android:text="Open Hours:"
-                android:textColor="@color/colorLightBlack"
+                android:textColor="@color/white"
                 android:textSize="@dimen/smallFontSize" />
 
             <View

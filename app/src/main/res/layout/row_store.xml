@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:background="@drawable/layout_shadow"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="@dimen/smallSpace">
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/ivImage"
         android:text="7 Eleven"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/largeFontSize" />
 
     <TextView

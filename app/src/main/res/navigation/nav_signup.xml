@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fullNameFragment"
         android:name="com.example.banhangonline.Fragment.FullNameFragment"
-        android:label="FullName"
+        android:label="Step 1/3"
         tools:layout="@layout/fragment_full_name" >
         <action
             android:id="@+id/action_fullNameFragment_to_addressFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/addressFragment"
         android:name="com.example.banhangonline.Fragment.AddressFragment"
-        android:label="Address"
+        android:label="Step 2/3"
         tools:layout="@layout/fragment_address" >
         <action
             android:id="@+id/action_addressFragment_to_userPassFragment"
@@ -26,6 +26,6 @@
     <fragment
         android:id="@+id/userPassFragment"
         android:name="com.example.banhangonline.Fragment.UserPassFragment"
-        android:label="Email"
+        android:label="Step 3/3"
         tools:layout="@layout/fragment_user_pass" />
 </navigation>

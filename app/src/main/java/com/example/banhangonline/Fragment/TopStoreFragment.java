@@ -1,5 +1,6 @@
 package com.example.banhangonline.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.banhangonline.Adapter.StoreAdapter;
 import com.example.banhangonline.Model.Store;
 import com.example.banhangonline.R;
+import com.example.banhangonline.StoreDetailActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -99,7 +101,7 @@ public class TopStoreFragment extends Fragment implements StoreAdapter.OnStoreIt
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference();
 
-        Query query = reference.child("stores").orderByChild("rate").limitToLast(3);
+        Query query = reference.child("stores").orderByChild("rate").limitToLast(5);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -121,6 +123,8 @@ public class TopStoreFragment extends Fragment implements StoreAdapter.OnStoreIt
 
     @Override
     public void onStoreItemClick(Store store) {
-
+        Intent intent = new Intent(getContext(), StoreDetailActivity.class);
+        intent.putExtra("store", store);
+        startActivity(intent);
     }
 }

@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".OrderActivity">
+    tools:context=".OrderActivity"
+    android:background="@drawable/wood">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
+        android:background="@drawable/wood"
         android:padding="@dimen/smallSpace"
         android:layout_margin="@dimen/smallSpace">
 
@@ -19,53 +20,57 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
+
         <LinearLayout
-            android:layout_below="@+id/frgMaps"
-            android:layout_above="@+id/btnPlaceOrder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/btnPlaceOrder"
+            android:layout_below="@+id/frgMaps"
+            android:background="@color/white"
             android:orientation="vertical"
             android:padding="@dimen/mediumSpace">
 
             <TextView
-                android:layout_marginTop="@dimen/mediumSpace"
                 android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mediumSpace"
                 android:text="Name"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/largeFontSize"
                 android:textStyle="bold" />
+
             <TextView
-                android:layout_marginTop="@dimen/mediumSpace"
                 android:id="@+id/tvAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mediumSpace"
                 android:text="Address: "
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/largeFontSize"
                 android:textStyle="bold" />
+
             <TextView
-                android:layout_marginTop="@dimen/mediumSpace"
                 android:id="@+id/tvMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mediumSpace"
                 android:text="Mobile: "
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/largeFontSize"
                 android:textStyle="bold" />
 
             <RelativeLayout
-                android:layout_marginTop="@dimen/mediumSpace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mediumSpace"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total:"
                     android:gravity="center"
+                    android:text="Total:"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/largeFontSize"
                     android:textStyle="bold" />
@@ -80,25 +85,27 @@
                     android:textSize="@dimen/largeFontSize"
                     android:textStyle="bold" />
             </RelativeLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProducts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/mediumSpace" />
         </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPlaceOrder"
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
             android:layout_marginTop="@dimen/mediumSpace"
-            android:background="@drawable/bg_green_button"
-            android:text="@string/checkout"
+            android:background="@drawable/bg2"
             android:padding="@dimen/mediumSpace"
+            android:text="@string/checkout"
             android:textAllCaps="false"
-            android:textSize="@dimen/mediumFontSize"
-            android:textColor="@color/colorWhite"
-            android:layout_alignParentBottom="true"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/mediumFontSize" />
 
     </RelativeLayout>
 
