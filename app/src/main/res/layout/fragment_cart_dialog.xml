@@ -28,9 +28,9 @@
         android:id="@+id/tvTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total: 304000 VND"
         android:layout_gravity="right"
-        android:textColor="@color/colorPrimary"
+        android:text="Total: 304000 VND"
+        android:textColor="#FF0000"
         android:textSize="@dimen/largeFontSize"
         android:textStyle="bold" />
 

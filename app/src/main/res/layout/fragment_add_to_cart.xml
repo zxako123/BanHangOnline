@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="29000 VND"
-            android:textColor="@color/colorBlack"
+            android:textColor="#FF0000"
             android:textSize="@dimen/largeFontSize"
             android:textStyle="normal" />
     </RelativeLayout>

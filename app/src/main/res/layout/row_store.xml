@@ -32,7 +32,7 @@
         android:layout_marginTop="@dimen/mediumSpace"
         android:layout_toRightOf="@id/ivImage"
         android:text="82 Nguyen Thi Minh Khai"
-        android:textColor="@color/colorTextHint"
+        android:textColor="@color/black"
         android:textSize="@dimen/mediumFontSize" />
 
     <TextView
